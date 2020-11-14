@@ -12,6 +12,7 @@ public class HandPresence : MonoBehaviour
         InputDevices.GetDevices(devices);
         foreach (var item in devices)
         {
+            Debug.Log("Hello, world.");
             Debug.Log(item.name + item.characteristics);
         }
     }
