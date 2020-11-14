@@ -16,8 +16,9 @@ public class HandPresence : MonoBehaviour
         foreach (var item in devices)
         {
             Debug.Log("Hello, world.");
-            Debug.Log(item.name + item.characteristics + item.manufacturer);
+            Debug.Log("Here" + item.name + item.characteristics + item.manufacturer);
         }
+        Debug.Log(devices.Count);
         if (devices.Count > 0)
         {
             targetDevice = devices[0];
@@ -27,8 +28,12 @@ public class HandPresence : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue);
-        if (primaryButtonValue)
-            Debug.Log("Pressing Primary Button");
+        // targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue);
+        targetDevice.TryGetFeatureValue(CommonUsages.trigger  , out float primaryButtonValue);
+        //Debug.Log("Got Here.");
+        //Debug.Log("Next the value" + primaryButtonValue);
+        if (primaryButtonValue > 0.1f)
+           // Debug.Log("Pressing Primary Button");
+        Debug.Log("Pressing Trigger");
     }
 }
