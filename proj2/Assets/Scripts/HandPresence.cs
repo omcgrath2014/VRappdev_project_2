@@ -5,10 +5,16 @@ using UnityEngine.XR;
 
 public class HandPresence : MonoBehaviour
 {
+    public bool showController = true;
     public InputDeviceCharacteristics controllerCharacteristics;
     public List<GameObject> controllerPrefabs;
+    public GameObject handModelPrefab;
+
     private InputDevice targetDevice;
     private GameObject spawnedController;
+    private GameObject spawnedHandModel;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,9 +40,13 @@ public class HandPresence : MonoBehaviour
             }
             else
             {
+                Debug.LogError("Count is " + controllerPrefabs.Count);
                 Debug.LogError("Did not find corresponding controller model");
                 spawnedController = Instantiate(controllerPrefabs[0], transform);
             }
+
+           // spawnedHandModel = Instantiate(handModelPrefab, transform);
+
         }
     }
 
@@ -58,16 +68,27 @@ public class HandPresence : MonoBehaviour
   
         
         if (targetDevice.TryGetFeatureValue(CommonUsages.primary2DAxisClick, out bool primary2DAxisClick) && primary2DAxisClick)
-            Debug.Log("Got Primary 2D Avis Click");
+           Debug.Log("Got Primary 2D Avis Click");
 
         
-        if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue) && triggerValue > 0.1f)
+       if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue) && triggerValue > 0.1f)
             Debug.Log("Pressing trigger" + triggerValue);
 
       
         if (targetDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 primary2DAxisValue) && primary2DAxisValue != Vector2.zero)
             Debug.Log("Pressing Primary Button" + primary2DAxisValue);
 
+
+         //if(showController)
+       // {
+          //  spawnedHandModel.SetActive(false);
+       //     spawnedController.SetActive(true);
+        //}
+       // else
+       // {
+          //  spawnedHandModel.SetActive(true);
+      //      spawnedController.SetActive(true);
+       // }
 
     }
 }
