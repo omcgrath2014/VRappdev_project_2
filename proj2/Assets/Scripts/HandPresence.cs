@@ -28,13 +28,13 @@ public class HandPresence : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // targetDevice.TryGetFeatureValue(CommonUsages.primary2DAxisClick, out bool primary2DAxisClick);
-        //if (primary2DAxisClick)
-        //    Debug.Log("Got Primary 2D Avis Click");
+        targetDevice.TryGetFeatureValue(CommonUsages.primary2DAxisClick, out bool primary2DAxisClick);
+        if (primary2DAxisClick)
+            Debug.Log("Got Primary 2D Avis Click");
 
-       // targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue);
-      //  if (triggerValue > 0.1f)
-        //   Debug.Log("Pressing trigger" + triggerValue);
+        targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue);
+        if (triggerValue > 0.1f)
+           Debug.Log("Pressing trigger" + triggerValue);
 
        targetDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 primary2DAxisValue);
         if (primary2DAxisValue != Vector2.zero)
